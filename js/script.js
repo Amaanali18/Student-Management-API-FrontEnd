@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Basic health check for backend connection on index page
     if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
         try {
-            const response = await fetch(BASE_URL + "/all"); // Using /all as health check
+            const response = await fetch(BASE_URL + "/"); // Using / as health check
             if (!response.ok) throw new Error("Backend not available");
         } catch (error) {
             console.warn("Backend connectivity issue:", error);
@@ -100,7 +100,7 @@ async function insertStudent(event) {
             body: JSON.stringify(studentData)
         });
         alert("Student record created successfully!");
-        window.location.href = "index.html"; // Redirect to home after insert
+        window.location.href = "../index.html"; // Redirect to home after insert
     } catch (error) {
         alert("Failed to create student: " + error.message);
     }
