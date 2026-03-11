@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <link rel="stylesheet" href="../css/updateStudent.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form onsubmit="updateStudent()">
+            <label for="enrollmentNumber">Enrollment Number:</label>
+            <input type="text" id="enrollmentNumber" name="enrollmentNumber" required readonly><br><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required><br><br>
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required><br><br>
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" id="contactNumber" name="contactNumber" required><br><br>
+            <button type="submit">Submit Data</button>
+            <button type="reset">Reset Data</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            const params = new URLSearchParams(window.location.search);
+            const enrollmentNumber = params.get("enrollmentNumber");
+            const base_url = "https://student-management-api-l7xk.onrender.com/api";
+            if (!enrollmentNumber) return;
+
+            try {
+                const response = await fetch(base_url + `/${enrollmentNumber}`);
+
+                if (!response.ok) {
+                    alert("Student not found");
+                    return;
+                }
+
+                const student = await response.json();
+
+                document.getElementById("enrollmentNumber").value = student.enrollmentNumber;
+                document.getElementById("name").value = student.name;
+                document.getElementById("email").value = student.email;
+                document.getElementById("department").value = student.department;
+                document.getElementById("contactNumber").value = student.contactNumber;
+
+            } catch (error) {
+                alert("Failed to load student data");
+            }
+
+        });
+    </script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

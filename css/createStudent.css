@@ -1,0 +1,24 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+  font-family:gilroy;
+}
+html,body{
+  height:100%;
+  width:100%;
+}
+body,.wrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    height:75%;
+    width:75%;
+    flex-direction: column;
+    justify-content: start;
+}
+.wrapper form input{
+    width:100%;
+}
